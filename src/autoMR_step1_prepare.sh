@@ -34,9 +34,6 @@ echo "Clumping Rsquare: ${rsq}"
 ####
 echo "prepare for MR start"
 
-#### download plink
-wget http://s3.amazonaws.com/plink1-assets/plink_linux_x86_64_20201019.zip
-unzip -o plink_linux_x86_64_20201019.zip
 
 #### 1000G PLINK file
 #varid1000g=varid1000g.txt
@@ -82,6 +79,10 @@ awk -F '\t' -v varid2="$outvarid" 'NR==FNR {id[$1]; next} $varid2 in id' ${outco
 echo -e "SNP P chr" > ${expname}_clump_input.tsv
 awk -v varid="$expvarid" -v pval="$exppvalue" '{split($varid,a,":");print $varid,$pval,a[1]}' ${expname}_match.tsv >> ${expname}_clump_input.tsv
 uchr=$(awk -F" " '(NR>1){print $3}' ${expname}_clump_input.tsv | uniq)
+
+#### download plink for version control
+wget http://s3.amazonaws.com/plink1-assets/plink_linux_x86_64_20201019.zip
+unzip -o plink_linux_x86_64_20201019.zip
 
 #### perfrom clumping using plink
 for chrom in $uchr

@@ -53,12 +53,12 @@ Rscript autoMR_step2_MRtest.R
 #### --expfile: exposure file
 Input file for exposure. Please use the output from step1. The file name will be "yourexposurename"_match_clump.tsv
 #### --expvariables: variable names used in the MR analysis in exposure file
-5 colum names are reuqires 1) varid 2)beta 3)standard error 4) coded allele 5) noncoded allele
+5 colum names are reuqires 1) varid 2)beta 3)standard error 4) coded allele 5) noncoded allele.
 ie, --expvariables=varid,BETA,SE,ALLELE1,ALLELE0
 #### --outfile: outcome files
 Input file for outcome. Please use the output from step1. The file name will be "youroutcomename"_match_clump.tsv
 #### --outvariables: variable names used in the MR analysis in outcome file
-5 colum names are reuqires 1) varid 2)beta 3)standard error 4) coded allele 5) noncoded allele
+5 colum names are reuqires 1) varid 2)beta 3)standard error 4) coded allele 5) noncoded allele.
 ie, --outvariables=varid,Effect,StdErr,Allele1,Allele2
 #### --ressultfile: result filename
 R object will be your result. Please use the yourresultfilename.RData

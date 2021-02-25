@@ -1,6 +1,6 @@
 # autoMR
 ## Two sample Mendelian Randomization can be excecuted using two simple command lines
-R version > 3.6, library(optparse), library(MendelianRandomization), library(data.table)
+R version > 3.6, library(optparse), library(MendelianRandomization), library(data.table) need to be installed
 
 ### 1) MR preparation (step 1: before exceuting MR analysis)
 ./src/autoMR_step1_prepare.sh \

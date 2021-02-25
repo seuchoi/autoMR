@@ -120,7 +120,7 @@ awk -F '\t' -v varid2="$outvarid" 'NR==FNR {id[$1]; next} $varid2 in id' ${expna
 
 ####
 echo "MR analysis is ready"
-echo "Please use ${expname}_match_clump.tsv and ${outcome}_match_clump.tsv"
+echo "Please use ${expname}_match_clump.tsv and ${outcome}_match_clump.tsv for step 2"
 
 ######## MR preparation is done
 ######## clean the files
@@ -139,3 +139,4 @@ rm plink
 rm toy.map
 rm toy.ped
 rm prettify
+rm LICENSE

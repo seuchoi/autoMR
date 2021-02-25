@@ -50,7 +50,7 @@ mv refvarid2.txt refvarid.txt
 #expvaradd=${expname}_maf0.01_add.tsv
 #expvarid=${expname}_maf0.01_varid.tsv
 #awk '($7>=0.01)&&($7<=0.99)&&($8>=0.3){print $0"\t"$2":"$3":"$5":"$6}' ${expfile} > ${expname}_maf0.01_add.tsv
-awk -F '\t' -v varid="$expvarid" '(NR>1){print $varid}' ${expfile} > ${expname}_varid.tsv
+awk -F '\t' -v varid="$expvarid" -v pval="$exppvalue" -v pthe=${cpval} '(NR>1)&&($pval<=pthe){print $varid}' ${expfile} > ${expname}_varid.tsv
 
 #### AFib GWAS
 #outvarid=${outcome}_maf0.01_varid.tsv
@@ -79,11 +79,12 @@ awk -F '\t' -v varid2="$outvarid" 'NR==FNR {id[$1]; next} $varid2 in id' ${outco
 #echo -e "SNP A1 A2 freq beta se P" > ${expname}_clump_input.tsv
 #awk '{print $17,$5,$6,$7,$11,$12,$10}' ${expname}_match.tsv >> ${expname}_clump_input.tsv
 
-echo -e "SNP P" > ${expname}_clump_input.tsv
-awk -v varid="$expvarid" -v pval="$exppvalue" '{print $varid,$pval}' ${expname}_match.tsv >> ${expname}_clump_input.tsv
+echo -e "SNP P chr" > ${expname}_clump_input.tsv
+awk -v varid="$expvarid" -v pval="$exppvalue" '{split($varid,a,":");print $varid,$pval,a[1]}' ${expname}_match.tsv >> ${expname}_clump_input.tsv
+uchr=$(awk -F" " '(NR>1){print $3}' ${expname}_clump_input.tsv | uniq)
 
 #### perfrom clumping using plink
-for chrom in {1..22}
+for chrom in $uchr
 do
 echo "perfrom clumping on ${expname} chr=${chrom} kbp=${kbp}kb pvalue=${cpval} r2=${rsq}"
 #/medpop/afib/software/plink1.9/20190304/plink

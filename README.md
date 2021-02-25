@@ -1,5 +1,6 @@
 # autoMR
-## two sample Mendelian Randomization can be excecuted using two simple commandlines
+## Two sample Mendelian Randomization can be excecuted using two simple commandlines
+### MR preparation
 ./src/autoMR_step1_prepare.sh \
 -r # reference panel\
 -e # exposure name \
@@ -12,3 +13,5 @@
 -b # clumping distance kbp\
 -c # clumping p-value  threshold \
 -s # clumping rsquare value
+
+#### -r : reference panel 

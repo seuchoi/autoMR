@@ -45,7 +45,7 @@ It is required for clummping in Plink (0.3, 0.5)
 3) Outcome summary statistics with clumped variants (filename will be outcomename_"match_clump.tsv")
 
 ### 2) MR analysis (step 2: exceuting MR analysis using MendelianRandomization R-package)
-Rscript ./src/autoMR_step2_MRtest.R
+Rscript ./src/autoMR_step2_MRtest.R \n
 --expfile=/path/to/exposure/summarystatistisc/withclumpedvariants/exposurename_match_clump.tsv \
 --expvariables= 5 variable names used in the MR analysis  \
 --outfile=/path/to/outcome/summarystatistisc/withclumpedvariants/outcomename_match_clump.tsv \

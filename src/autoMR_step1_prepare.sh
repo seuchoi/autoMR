@@ -34,7 +34,9 @@ echo "Clumping Rsquare: ${rsq}"
 ####
 echo "prepare for MR start"
 
-
+#### download plink
+wget http://s3.amazonaws.com/plink1-assets/plink_linux_x86_64_20201019.zip
+unzip -o plink_linux_x86_64_20201019.zip
 
 #### 1000G PLINK file
 #varid1000g=varid1000g.txt
@@ -85,7 +87,7 @@ for chrom in {1..22}
 do
 echo "perfrom clumping on ${expname} chr=${chrom} kbp=${kbp}kb pvalue=${cpval} r2=${rsq}"
 #/medpop/afib/software/plink1.9/20190304/plink
-/medpop/afib/software/plink1.9/20190304/plink --silent --bfile ${reffile} \
+./plink --silent --bfile ${reffile} \
 --extract ${outcome}_${expname}_ref_comm2.txt --chr ${chrom} --clump ${expname}_clump_input.tsv --clump-kb ${kbp} --clump-p1 ${cpval} --clump-r2 ${rsq} --out ${expname}_clump_chr${chrom}_${kbp}kb_${cpval}_r2_${rsq}
 done
 
@@ -132,3 +134,8 @@ rm ${outcome}_match.tsv
 rm ${expname}_clump_input.tsv
 rm ${expname}_clump_chr*_${kbp}kb_${cpval}_r2_${rsq}.*
 rm ${expname}_clump_ALLchr_${kbp}kb_${cpval}_r2_${rsq}.clumped_varid.txt
+rm plink_linux_x86_64_20201019.zip
+rm plink
+rm toy.map
+rm toy.ped
+rm prettify

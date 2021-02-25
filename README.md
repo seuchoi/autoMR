@@ -1,5 +1,7 @@
 # autoMR
 ## Two sample Mendelian Randomization can be excecuted using two simple command lines
+R version > 3.6, library(optparse), library(MendelianRandomization), library(data.table)
+
 ### 1) MR preparation (step 1: before exceuting MR analysis)
 ./src/autoMR_step1_prepare.sh \
 -r # reference panel\
@@ -37,13 +39,13 @@ It is required for clummping in Plink (5e-8, 1e-6)
 #### -s : clumping rsquare value
 It is required for clummping in Plink (0.3, 0.5)
 
-#### excecution of this command line will generate three files
+#### Excecution of this command line will generate three files
 1) Clumping result output from Plink
 2) Eposure summary statistics with clumped variants (filename will be exposurename_"match_clump.tsv")
 3) Outcome summary statistics with clumped variants (filename will be outcomename_"match_clump.tsv")
 
 ### 2) MR analysis (step 2: exceuting MR analysis using MendelianRandomization R-package)
-Rscript autoMR_step2_MRtest.R
+Rscript ./src/autoMR_step2_MRtest.R
 --expfile=/path/to/exposure/summarystatistisc/withclumpedvariants/exposurename_match_clump.tsv \
 --expvariables= 5 variable names used in the MR analysis  \
 --outfile=/path/to/outcome/summarystatistisc/withclumpedvariants/outcomename_match_clump.tsv \
